@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initProcessGallery();
   initFaq();
   initEstimateCalculator();
+  initPersonalEstimateForm();
 });
 
 function initProcessGallery() {
@@ -120,4 +121,65 @@ function initEstimateCalculator() {
 
   areaInput.addEventListener("input", updateEstimate);
   updateEstimate();
+}
+
+function initPersonalEstimateForm() {
+  const form = document.querySelector(".personal-estimate-form");
+
+  if (!form) {
+    return;
+  }
+
+  const nameInput = form.querySelector('input[name="contact-name"]');
+  const phoneInput = form.querySelector('input[name="contact-phone"]');
+  const summaryInput = form.querySelector('textarea[name="project-summary"]');
+  const status = form.querySelector(".personal-estimate-status");
+
+  const setInvalidState = (input, invalid) => {
+    input?.classList.toggle("is-invalid", invalid);
+  };
+
+  const validate = () => {
+    const nameValue = nameInput?.value.trim() ?? "";
+    const phoneValue = phoneInput?.value.trim() ?? "";
+    const summaryValue = summaryInput?.value.trim() ?? "";
+
+    setInvalidState(nameInput, nameValue.length < 2);
+    setInvalidState(phoneInput, phoneValue.length < 6);
+    setInvalidState(summaryInput, summaryValue.length < 10);
+
+    return nameValue.length >= 2 && phoneValue.length >= 6 && summaryValue.length >= 10;
+  };
+
+  [nameInput, phoneInput, summaryInput].forEach((input) => {
+    input?.addEventListener("input", () => {
+      setInvalidState(input, false);
+
+      if (status) {
+        status.textContent = "";
+      }
+    });
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!validate()) {
+      if (status) {
+        status.textContent = "Заполните все поля, чтобы мы могли подготовить расчёт.";
+      }
+      return;
+    }
+
+    const subject = encodeURIComponent("Запрос на расчет стоимости бани");
+    const body = encodeURIComponent(
+      `Имя: ${nameInput.value.trim()}\nТелефон: ${phoneInput.value.trim()}\n\nОписание проекта:\n${summaryInput.value.trim()}`
+    );
+
+    if (status) {
+      status.textContent = "Открываем письмо с вашим запросом.";
+    }
+
+    window.location.href = `mailto:arkov-job@yandex.ru?subject=${subject}&body=${body}`;
+  });
 }

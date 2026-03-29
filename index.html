@@ -33,10 +33,11 @@
         <a href="#about">О команде</a>
         <a href="#process">Как мы работаем</a>
         <a href="#estimate">Стоимость</a>
+        <a href="#personal-estimate">Расчёт для вас</a>
         <a href="#faq">FAQ</a>
         <a href="#contacts">Контакты</a>
       </nav>
-      <a class="button button-secondary header-cta" href="#estimate">Получить консультацию</a>
+      <a class="button button-secondary header-cta" href="#personal-estimate">Получить консультацию</a>
     </div>
   </header>
 
@@ -62,7 +63,7 @@
             </article>
           </div>
           <div class="hero-actions">
-            <a class="button" href="#estimate">Получить консультацию</a>
+            <a class="button" href="#personal-estimate">Получить консультацию</a>
           </div>
         </div>
 
@@ -364,6 +365,40 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft personal-estimate-section" id="personal-estimate">
+      <div class="container personal-estimate-shell">
+        <div class="personal-estimate-copy">
+          <p class="eyebrow">Персональный расчёт</p>
+          <h2>Расчёт стоимости для Вас</h2>
+          <p class="lead-text">
+            Если нужен более точный расчёт под вашу баню, мы можем учесть площадь помещений, состав работ, материалы и желаемый уровень отделки. Так вы получите ориентир, ближе к вашему реальному проекту.
+          </p>
+        </div>
+
+        <div class="personal-estimate-card">
+          <form class="personal-estimate-form" novalidate>
+            <div class="field">
+              <label for="project-summary">Краткое описание вашего проекта бани</label>
+              <textarea id="project-summary" name="project-summary" rows="5" placeholder="Укажите площадь помещения, какие помещения будут внутри, какие материалы вы бы хотели использовать для чистовой отделки? Также укажите важные пожелания." required></textarea>
+            </div>
+            <div class="field">
+              <label for="contact-phone">Номер телефона для связи</label>
+              <input id="contact-phone" name="contact-phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required>
+            </div>
+            <div class="field">
+              <label for="contact-name">Как к вам обращаться (Имя)</label>
+              <input id="contact-name" name="contact-name" type="text" placeholder="Имя" required>
+            </div>
+            <div class="personal-estimate-actions">
+              <button class="button personal-estimate-submit" type="submit">Отправить запрос</button>
+              <a class="button button-secondary" href="#contacts">Перейти к контактам</a>
+            </div>
+            <p class="personal-estimate-status" role="status" aria-live="polite"></p>
+          </form>
         </div>
       </div>
     </section>
