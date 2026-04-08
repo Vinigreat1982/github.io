@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   initProcessGallery();
   initFaq();
-  initEstimateCalculator();
   initPersonalEstimateForm();
 });
 
@@ -97,32 +96,6 @@ function initFaq() {
   });
 }
 
-function initEstimateCalculator() {
-  const areaInput = document.querySelector('input[name="bath-area"]');
-  const budgetOutput = document.querySelector('[data-estimate-tier="budget"]');
-  const standardOutput = document.querySelector('[data-estimate-tier="standard"]');
-  const premiumOutput = document.querySelector('[data-estimate-tier="premium"]');
-
-  if (!areaInput || !budgetOutput || !standardOutput || !premiumOutput) {
-    return;
-  }
-
-  const formatAmount = (value) => new Intl.NumberFormat("ru-RU").format(value);
-  const formatRange = (min, max) => `${formatAmount(min)}-${formatAmount(max)} тыс. ₽`;
-
-  const updateEstimate = () => {
-    const area = Number(areaInput.value);
-    const safeArea = Number.isFinite(area) && area > 0 ? area : 0;
-
-    budgetOutput.textContent = formatRange(safeArea * 25, safeArea * 35);
-    standardOutput.textContent = formatRange(safeArea * 35, safeArea * 55);
-    premiumOutput.textContent = formatRange(safeArea * 55, safeArea * 80);
-  };
-
-  areaInput.addEventListener("input", updateEstimate);
-  updateEstimate();
-}
-
 function initPersonalEstimateForm() {
   const form = document.querySelector(".personal-estimate-form");
 
@@ -133,6 +106,8 @@ function initPersonalEstimateForm() {
   const nameInput = form.querySelector('input[name="contact-name"]');
   const phoneInput = form.querySelector('input[name="contact-phone"]');
   const summaryInput = form.querySelector('textarea[name="project-summary"]');
+  const consentInput = form.querySelector('input[name="personal-consent"]');
+  const submitButton = form.querySelector(".personal-estimate-submit");
   const status = form.querySelector(".personal-estimate-status");
 
   const setInvalidState = (input, invalid) => {
@@ -143,12 +118,20 @@ function initPersonalEstimateForm() {
     const nameValue = nameInput?.value.trim() ?? "";
     const phoneValue = phoneInput?.value.trim() ?? "";
     const summaryValue = summaryInput?.value.trim() ?? "";
+    const consentAccepted = consentInput?.checked ?? false;
 
     setInvalidState(nameInput, nameValue.length < 2);
     setInvalidState(phoneInput, phoneValue.length < 6);
     setInvalidState(summaryInput, summaryValue.length < 10);
+    setInvalidState(consentInput, !consentAccepted);
 
-    return nameValue.length >= 2 && phoneValue.length >= 6 && summaryValue.length >= 10;
+    return nameValue.length >= 2 && phoneValue.length >= 6 && summaryValue.length >= 10 && consentAccepted;
+  };
+
+  const syncSubmitState = () => {
+    if (submitButton) {
+      submitButton.disabled = !(consentInput?.checked ?? false);
+    }
   };
 
   [nameInput, phoneInput, summaryInput].forEach((input) => {
@@ -159,6 +142,15 @@ function initPersonalEstimateForm() {
         status.textContent = "";
       }
     });
+  });
+
+  consentInput?.addEventListener("change", () => {
+    setInvalidState(consentInput, false);
+    syncSubmitState();
+
+    if (status) {
+      status.textContent = "";
+    }
   });
 
   form.addEventListener("submit", (event) => {
@@ -182,4 +174,6 @@ function initPersonalEstimateForm() {
 
     window.location.href = `mailto:arkov-job@yandex.ru?subject=${subject}&body=${body}`;
   });
+
+  syncSubmitState();
 }

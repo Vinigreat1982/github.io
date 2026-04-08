@@ -32,7 +32,6 @@
       <nav class="site-nav" aria-label="Основная навигация">
         <a href="#about">О команде</a>
         <a href="#process">Как мы работаем</a>
-        <a href="#estimate">Стоимость</a>
         <a href="#personal-estimate">Расчёт для вас</a>
         <a href="#faq">FAQ</a>
         <a href="#contacts">Контакты</a>
@@ -320,62 +319,13 @@
       </div>
     </section>
 
-    <section class="section" id="estimate">
-      <div class="container estimate-shell">
-        <div class="estimate-copy">
-          <p class="eyebrow">Стоимость</p>
-          <h2>Стоимость отделки вашей бани под ключ</h2>
-          <p class="lead-text">
-            Стоимость рассчитывается исходя из особенностей проекта, стоимости материалов, сроков реализации и других возможных параметров проекта. Поэтому наилучший способ получить точный расчет стоимости – это получить консультацию у нашего мастера, с последующим расчетом полной стоимости проекта.
-          </p>
-          <p class="estimate-footnote">
-            Поскольку парилка требует более сложных и дорогих решений, итоговую стоимость корректнее показывать в диапазоне.
-          </p>
-        </div>
-
-        <div class="estimate-card">
-          <div class="estimate-calculator">
-            <p class="estimate-label">Калькулятор</p>
-            <h3>Примерный расчёт стоимости отделки бани</h3>
-            <div class="estimate-calculator-layout">
-              <div class="estimate-calculator-main">
-                <p class="estimate-caption">Все значения в калькуляторе указаны в тысячах рублей.</p>
-                <div class="field estimate-field">
-                  <label for="bath-area">Площадь, м²</label>
-                  <input id="bath-area" name="bath-area" type="number" min="0" step="1" inputmode="numeric" placeholder="Например, 12">
-                </div>
-                <p class="estimate-note">Расчёт предварительный и зависит от материалов, состава работ и сложности проекта.</p>
-              </div>
-              <div class="estimate-options" aria-live="polite">
-                <article class="estimate-option">
-                  <span class="estimate-option-name">Бюджетный</span>
-                  <span class="estimate-option-range">25-35 тыс. ₽ / м²</span>
-                  <strong class="estimate-option-value" data-estimate-tier="budget">0</strong>
-                </article>
-                <article class="estimate-option">
-                  <span class="estimate-option-name">Средний / оптимальный</span>
-                  <span class="estimate-option-range">35-55 тыс. ₽ / м²</span>
-                  <strong class="estimate-option-value" data-estimate-tier="standard">0</strong>
-                </article>
-                <article class="estimate-option">
-                  <span class="estimate-option-name">Премиум</span>
-                  <span class="estimate-option-range">55-80 тыс. ₽ / м²</span>
-                  <strong class="estimate-option-value" data-estimate-tier="premium">0</strong>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section section-soft personal-estimate-section" id="personal-estimate">
       <div class="container personal-estimate-shell">
         <div class="personal-estimate-copy">
           <p class="eyebrow">Персональный расчёт</p>
           <h2>Расчёт стоимости для Вас</h2>
           <p class="lead-text">
-            Если нужен более точный расчёт под вашу баню, мы можем учесть площадь помещений, состав работ, материалы и желаемый уровень отделки. Так вы получите ориентир, ближе к вашему реальному проекту.
+            Каждая баня имеет свои особенности: площадь, состав помещений, материалы, инженерные решения и желаемый уровень отделки. Поэтому точный расчёт нельзя сделать по общему шаблону. Чтобы мы могли сориентировать вас ближе к реальной стоимости, расскажите немного о вашем проекте в форме справа.
           </p>
         </div>
 
@@ -393,8 +343,12 @@
               <label for="contact-name">Как к вам обращаться (Имя)</label>
               <input id="contact-name" name="contact-name" type="text" placeholder="Имя" required>
             </div>
+            <label class="consent-check">
+              <input id="personal-consent" name="personal-consent" type="checkbox" required>
+              <span>Нажимая кнопку, вы соглашаетесь на обработку персональных данных в соответствии с Политикой конфиденциальности.</span>
+            </label>
             <div class="personal-estimate-actions">
-              <button class="button personal-estimate-submit" type="submit">Отправить запрос</button>
+              <button class="button personal-estimate-submit" type="submit" disabled>Отправить запрос</button>
               <a class="button button-secondary" href="#contacts">Перейти к контактам</a>
             </div>
             <p class="personal-estimate-status" role="status" aria-live="polite"></p>
@@ -454,25 +408,23 @@
           </span>
           <span class="brand-copy">
             <strong>Мастера банных дел</strong>
-            <span>Отделка под ключ</span>
+            <span>Монтаж и внутренняя отделка бань под ключ.</span>
           </span>
         </a>
-        <p class="footer-slogan">Профессиональная отделка бань: создаём пространство для настоящего отдыха.</p>
+        <p class="footer-slogan">© 2026 Мастера банных дел. Все права защищены.</p>
       </div>
 
       <div class="footer-contacts">
         <h2>Контакты</h2>
         <ul class="contact-list">
-          <li><a href="mailto:arkov-job@yandex.ru">arkov-job@yandex.ru</a></li>
-          <li>Телефон: уточняется</li>
-          <li>Telegram: уточняется</li>
-          <li>Max: уточняется</li>
-          <li>Регион работы: Московская область</li>
+          <li>Тел.: +7 (__) --</li>
+          <li><a href="mailto:example@mail.ru">Email: example@mail.ru</a></li>
         </ul>
+        <div class="footer-legal-links" aria-label="Правовые документы">
+          <a href="docs/politika_konfidentsialnosti_IP_Arkov_DV.pdf" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</a>
+          <a href="docs/soglasie_na_obrabotku_personalnyh_dannyh_IP_Arkov_DV.pdf" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a>
+        </div>
       </div>
-    </div>
-    <div class="container footer-bottom">
-      <p>© 2026, Мастера банных дел. Все права защищены.</p>
     </div>
   </footer>
 
